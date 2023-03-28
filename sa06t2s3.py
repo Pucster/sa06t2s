@@ -40,6 +40,11 @@ contours, hierarchy = cv2.findContours(
 # then a method from the previous century will be used to check for matches
 for contour in contours:
     x, y, w, h = cv2.boundingRect(contour)
+    # for i in range(len(contours)):
+    #     if hierarchy[0, i, 3] == -1:
+    #         # This contour has no parent, so it is not inside any other contour
+    #         x, y, w, h = cv2.boundingRect(contours[i])
+    #         contour = contours[i]
     # just look at contours that might make sense - small ones can be ignored
     if cv2.contourArea(contour) > max(img.shape) / 12:
         text_region = img[y : y + h, x : x + w]
