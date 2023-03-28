@@ -35,7 +35,9 @@ contours, hierarchy = cv2.findContours(
 )
 
 # iterate through contours and look for characters
-# this will
+# this will eventually result in some areas containing stuff
+# those areas will be resized to match the pattern size
+# then a method from the previous century will be used to check for matches
 for contour in contours:
     x, y, w, h = cv2.boundingRect(contour)
     # just look at contours that might make sense - small ones can be ignored
@@ -116,8 +118,9 @@ cv2.putText(
 
 # the "learning" phase will iterate through all findings and ask the user to validate the matches
 # pressing Esc will just skip the image
-# pressing the character will save the current image as a pattern
+# pressing the character will save the current image as a pattern for that character
 # I add a pattern if a mismatch happens or no mismatch but accuracy is too low
+# after the learning phase you have to re-run the pattern generation script
 print("Press 'l' to enter the learning phase, any other key to exit")
 cv2.imshow("Text Regions", imgc)
 learn = cv2.waitKey(0)
